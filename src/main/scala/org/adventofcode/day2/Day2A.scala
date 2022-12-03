@@ -5,7 +5,7 @@ import org.adventofcode.ResourceLoader
 object Day2A {
 
   def main(args: Array[String]): Unit = {
-    val result = ResourceLoader.reduceLineByLine("day2.txt", calc)
+    val result = ResourceLoader.reduceLineByLine(calc)
 
     println(result)
     assert(result == 14375)

@@ -7,10 +7,7 @@ object Day1A {
   def main(args: Array[String]): Unit = {
     val context = new Context()
 
-    ResourceLoader.processLineByLine(
-      "day1.txt",
-      _.foreach(calc(context, _))
-    )
+    ResourceLoader.processLineByLine(_.foreach(calc(context, _)))
 
     context.calculate()
 

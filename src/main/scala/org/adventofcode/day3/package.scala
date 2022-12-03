@@ -1,6 +1,8 @@
 package org.adventofcode
 
-private package object day3 {
+package object day3 extends HasFileName {
+
+  override implicit val fileName: String = "day3.txt"
 
   private val map = (('a' to 'z').lazyZip(1 to 26) ++ ('A' to 'Z').lazyZip(27 to 52)).toMap
 

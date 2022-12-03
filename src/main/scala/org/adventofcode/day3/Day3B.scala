@@ -6,7 +6,6 @@ object Day3B {
 
   def main(args: Array[String]): Unit = {
     val result = ResourceLoader.processLineByLine(
-      "day3.txt",
       _.grouped(3)
         .map(calc)
         .sum

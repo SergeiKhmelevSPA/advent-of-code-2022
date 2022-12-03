@@ -10,7 +10,6 @@ object Day1B {
     val context = new Context()
 
     ResourceLoader.processLineByLine(
-      "day1.txt",
       _.foreach(calc(context, _))
     )
 

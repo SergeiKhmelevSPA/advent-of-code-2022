@@ -5,13 +5,13 @@ import scala.language.reflectiveCalls
 
 object ResourceLoader {
 
-  def reduceLineByLine[R](fileName: String, f: String => R, op: (R, R) => R): R =
-    processLineByLine(fileName, _.map(f).reduce(op))
+  def reduceLineByLine[R](f: String => R, op: (R, R) => R)(implicit fileName: String): R =
+    processLineByLine(_.map(f).reduce(op))
 
-  def reduceLineByLine(fileName: String, f: String => Int, op: (Int, Int) => Int = _ + _): Int =
-    processLineByLine(fileName, lines => lines.map(f).reduce(op))
+  def reduceLineByLine(f: String => Int, op: (Int, Int) => Int = _ + _)(implicit fileName: String): Int =
+    processLineByLine(lines => lines.map(f).reduce(op))
 
-  def processLineByLine[R](fileName: String, f: Iterator[String] => R): R =
+  def processLineByLine[R](f: Iterator[String] => R)(implicit fileName: String): R =
     using(Source.fromResource(fileName)) { source =>
       f(source.getLines())
     }
@@ -22,4 +22,8 @@ object ResourceLoader {
     } finally {
       resource.close()
     }
+}
+
+trait HasFileName {
+  implicit val fileName: String
 }
