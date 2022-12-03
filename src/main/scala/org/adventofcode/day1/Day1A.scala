@@ -4,17 +4,14 @@ import org.adventofcode.ResourceLoader
 
 object Day1A {
 
-  def main(args: Array[String]): Unit = {
+  def main(): Int = {
     val context = new Context()
 
     ResourceLoader.processLineByLine(_.foreach(calc(context, _)))
 
     context.calculate()
 
-    val result = context.result()
-
-    println(result)
-    assert(result == 75501)
+    context.result()
   }
 
   private def calc(context: Context, line: String): Unit =

@@ -6,19 +6,14 @@ import scala.collection.mutable
 
 object Day1B {
 
-  def main(args: Array[String]): Unit = {
+  def main(): Int = {
     val context = new Context()
 
-    ResourceLoader.processLineByLine(
-      _.foreach(calc(context, _))
-    )
+    ResourceLoader.processLineByLine(_.foreach(calc(context, _)))
 
     context.calculate()
 
-    val result = context.sum()
-
-    println(result)
-    assert(result == 215594)
+    context.sum()
   }
 
   private def calc(context: Context, line: String): Unit =

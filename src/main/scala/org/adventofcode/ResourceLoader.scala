@@ -9,7 +9,7 @@ object ResourceLoader {
     processLineByLine(_.map(f).reduce(op))
 
   def reduceLineByLine(f: String => Int, op: (Int, Int) => Int = _ + _)(implicit fileName: String): Int =
-    processLineByLine(lines => lines.map(f).reduce(op))
+    processLineByLine(_.map(f).reduce(op))
 
   def processLineByLine[R](f: Iterator[String] => R)(implicit fileName: String): R =
     using(Source.fromResource(fileName)) { source =>

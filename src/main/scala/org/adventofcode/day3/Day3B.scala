@@ -4,20 +4,15 @@ import org.adventofcode.ResourceLoader
 
 object Day3B {
 
-  def main(args: Array[String]): Unit = {
-    val result = ResourceLoader.processLineByLine(
+  def main(): Int = {
+    ResourceLoader.processLineByLine(
       _.grouped(3)
-        .map(calc)
+        .map { lines => {
+          val commonItem = lines.reduce((a, b) => a intersect b)
+          commonItem.charAt(0).priority()
+        }
+        }
         .sum
     )
-
-    println(result)
-    assert(result == 8493)
-  }
-
-  private def calc(line: Seq[String]): Int = {
-    val commonItem = line.reduce((a, b) => a intersect b)
-
-    commonItem.charAt(0).priority()
   }
 }

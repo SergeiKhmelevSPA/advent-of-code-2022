@@ -4,18 +4,14 @@ import org.adventofcode.ResourceLoader
 
 object Day3A {
 
-  def main(args: Array[String]): Unit = {
-    val result = ResourceLoader.reduceLineByLine(calc)
+  def main(): Int = {
+    ResourceLoader.reduceLineByLine { line => {
+      val (compartment1, compartment2) = getCompartmentItems(line)
+      val commonItem = compartment1.intersect(compartment2)
 
-    println(result)
-    assert(result == 8493)
-  }
-
-  private def calc(rucksack: String): Int = {
-    val (compartment1, compartment2) = getCompartmentItems(rucksack)
-    val commonItem = compartment1.intersect(compartment2)
-
-    commonItem.charAt(0).priority()
+      commonItem.charAt(0).priority()
+    }
+    }
   }
 
   private def getCompartmentItems(rucksack: String): (String, String) = {

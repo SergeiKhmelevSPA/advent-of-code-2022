@@ -4,19 +4,15 @@ import org.adventofcode.ResourceLoader
 
 object Day2B {
 
-  def main(args: Array[String]): Unit = {
-    val result = ResourceLoader.reduceLineByLine(calc)
+  def main(): Int = {
+    ResourceLoader.reduceLineByLine { line => {
+      val items = line.split(' ')
+      val opponentStrategy = Strategy.parse(items(0))
+      val expectedOutcome = Outcome.parse(items(1))
 
-    println(result)
-    assert(result == 10274)
-  }
-
-  private def calc(line: String): Int = {
-    val items = line.split(' ')
-    val opponentStrategy = Strategy.parse(items(0))
-    val expectedOutcome = Outcome.parse(items(1))
-
-    expectedOutcome.score + opponentStrategy.withOutcome(expectedOutcome).score
+      expectedOutcome.score + opponentStrategy.withOutcome(expectedOutcome).score
+    }
+    }
   }
 
   private object Strategy {
