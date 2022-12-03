@@ -16,7 +16,10 @@ object Day1B {
 
     context.calculate()
 
-    println(context.sum())
+    val result = context.sum()
+
+    println(result)
+    assert(result == 215594)
   }
 
   private def calc(context: Context, line: String): Unit =

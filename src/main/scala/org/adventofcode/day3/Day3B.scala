@@ -14,6 +14,7 @@ object Day3B {
     )
 
     println(result)
+    assert(result == 8493)
   }
 
   private def calc(line: Seq[String]): Int = {

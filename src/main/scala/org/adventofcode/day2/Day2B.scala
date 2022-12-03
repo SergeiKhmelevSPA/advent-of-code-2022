@@ -8,6 +8,7 @@ object Day2B {
     val result = ResourceLoader.reduceLineByLine("day2.txt", calc)
 
     println(result)
+    assert(result == 10274)
   }
 
   private def calc(line: String): Int = {

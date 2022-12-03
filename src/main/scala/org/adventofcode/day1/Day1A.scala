@@ -14,7 +14,10 @@ object Day1A {
 
     context.calculate()
 
-    println(context)
+    val result = context.result()
+
+    println(result)
+    assert(result == 75501)
   }
 
   private def calc(context: Context, line: String): Unit =
@@ -38,6 +41,6 @@ object Day1A {
       current = 0
     }
 
-    override def toString = s"Context($max)"
+    def result(): Int = max
   }
 }
