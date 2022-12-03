@@ -1,21 +1,18 @@
 package org.adventofcode.day1
 
-import org.adventofcode.GetResource.using
-
-import scala.io.Source
+import org.adventofcode.ResourceLoader
 
 object Day1A {
 
   def main(args: Array[String]): Unit = {
     val context = new Context()
 
-    using(Source.fromResource("day1.txt")) { source => {
-      for (line <- source.getLines) {
-        calc(context, line)
-      }
-      context.calculate()
-    }
-    }
+    ResourceLoader.processLineByLine(
+      "day1.txt",
+      _.foreach(calc(context, _))
+    )
+
+    context.calculate()
 
     println(context)
   }

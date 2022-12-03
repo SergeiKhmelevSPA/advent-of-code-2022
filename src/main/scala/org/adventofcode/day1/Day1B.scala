@@ -1,22 +1,20 @@
 package org.adventofcode.day1
 
-import org.adventofcode.GetResource.using
+import org.adventofcode.ResourceLoader
 
 import scala.collection.mutable
-import scala.io.Source
 
 object Day1B {
 
   def main(args: Array[String]): Unit = {
     val context = new Context()
 
-    using(Source.fromResource("day1.txt")) { source => {
-      for (line <- source.getLines) {
-        calc(context, line)
-      }
-      context.calculate()
-    }
-    }
+    ResourceLoader.processLineByLine(
+      "day1.txt",
+      _.foreach(calc(context, _))
+    )
+
+    context.calculate()
 
     println(context.sum())
   }

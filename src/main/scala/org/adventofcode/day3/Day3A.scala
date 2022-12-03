@@ -1,21 +1,12 @@
 package org.adventofcode.day3
 
-import org.adventofcode.GetResource.using
+import org.adventofcode.ResourceLoader
 import org.adventofcode.day3.RacksackItemPriority.ItemPriority
-
-import scala.io.Source
 
 object Day3A {
 
   def main(args: Array[String]): Unit = {
-    var result = 0
-
-    using(Source.fromResource("day3.txt")) { source => {
-      for (line <- source.getLines) {
-        result += calc(line)
-      }
-    }
-    }
+    val result = ResourceLoader.reduceLineByLine("day3.txt", calc)
 
     println(result)
   }
