@@ -5,13 +5,12 @@ import org.adventofcode.ResourceLoader
 object Day2B {
 
   def main(): Int = {
-    ResourceLoader.reduceLineByLine { line => {
+    ResourceLoader.reduceLineByLine { line =>
       val items = line.split(' ')
       val opponentStrategy = Strategy.parse(items(0))
       val expectedOutcome = Outcome.parse(items(1))
 
       expectedOutcome.score + opponentStrategy.withOutcome(expectedOutcome).score
-    }
     }
   }
 

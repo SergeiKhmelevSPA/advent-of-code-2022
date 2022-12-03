@@ -7,10 +7,9 @@ object Day3B {
   def main(): Int = {
     ResourceLoader.processLineByLine(
       _.grouped(3)
-        .map { lines => {
+        .map { lines =>
           val commonItem = lines.reduce((a, b) => a intersect b)
           commonItem.charAt(0).priority()
-        }
         }
         .sum
     )

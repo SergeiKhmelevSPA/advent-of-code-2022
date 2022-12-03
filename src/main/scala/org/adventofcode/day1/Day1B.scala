@@ -9,19 +9,18 @@ object Day1B {
   def main(): Int = {
     val context = new Context()
 
-    ResourceLoader.processLineByLine(_.foreach(calc(context, _)))
+    ResourceLoader.processLineByLine(_.foreach { line =>
+      if (line.isBlank) {
+        context.calculate()
+      } else {
+        context.add(line.toInt)
+      }
+    })
 
     context.calculate()
 
     context.sum()
   }
-
-  private def calc(context: Context, line: String): Unit =
-    if (line.isBlank) {
-      context.calculate()
-    } else {
-      context.add(line.toInt)
-    }
 
   private class Context(
                          private var maxList: Array[Int] = new mutable.ArrayBuilder.ofInt().addAll(Array(0, 0, 0)).result(), // ja pierdolę
