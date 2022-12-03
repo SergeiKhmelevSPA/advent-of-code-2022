@@ -1,6 +1,6 @@
-package org.adventofcode.day3
+package org.adventofcode
 
-object RacksackItemPriority {
+private package object day3 {
 
   private val map = (('a' to 'z').lazyZip(1 to 26) ++ ('A' to 'Z').lazyZip(27 to 52)).toMap
 

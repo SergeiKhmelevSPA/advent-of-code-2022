@@ -1,7 +1,6 @@
 package org.adventofcode.day3
 
 import org.adventofcode.ResourceLoader
-import org.adventofcode.day3.RacksackItemPriority.ItemPriority
 
 object Day3A {
 
