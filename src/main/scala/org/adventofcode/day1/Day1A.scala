@@ -7,13 +7,13 @@ object Day1A {
   def main(): Int = {
     val context = new Context()
 
-    ResourceLoader.processLineByLine(_.foreach { line =>
+    ResourceLoader.processLineByLine(line =>
       if (line.isBlank) {
         context.calculate()
       } else {
         context.add(line.toInt)
       }
-    })
+    )
 
     context.calculate()
 

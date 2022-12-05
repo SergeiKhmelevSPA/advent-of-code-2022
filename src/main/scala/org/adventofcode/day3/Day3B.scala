@@ -5,7 +5,7 @@ import org.adventofcode.ResourceLoader
 object Day3B {
 
   def main(): Int = {
-    ResourceLoader.processLineByLine(
+    ResourceLoader.processLines(
       _.grouped(3)
         .map { lines =>
           val commonItem = lines.reduce((a, b) => a intersect b)
