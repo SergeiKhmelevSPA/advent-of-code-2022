@@ -1,5 +1,6 @@
 package org.adventofcode
 
+import scala.language.implicitConversions
 import scala.util.matching.Regex
 
 package object day5 extends HasFileName {
