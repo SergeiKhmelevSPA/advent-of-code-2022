@@ -16,7 +16,7 @@ object ResourceLoader {
       f(source.getLines())
     }
 
-  def processLineByLine(f: String => Unit)(implicit fileName: String) =
+  def processLineByLine(f: String => Unit)(implicit fileName: String): Unit =
     processLines(_.foreach(f))
 
   def using[A <: {def close(): Unit}, B](resource: A)(f: A => B): B =
