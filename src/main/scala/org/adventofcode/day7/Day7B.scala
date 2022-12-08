@@ -25,7 +25,7 @@ object Day7B {
             directory.children
               .flatMap(conditionRecursiveSum)
               .minOption
-              .optCompare(directory.size)
+              .optMathMin(directory.size)
           )
         } else {
           None
@@ -38,7 +38,7 @@ object Day7B {
 
   implicit class OptionComparator(element: Option[Int]) {
 
-    def optCompare(otherSize: Int): Int = {
+    def optMathMin(otherSize: Int): Int = {
       element match {
         case Some(value) => Math.min(value, otherSize)
         case None => otherSize
