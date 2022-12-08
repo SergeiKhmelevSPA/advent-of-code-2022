@@ -21,18 +21,28 @@ object Day7B {
 
       def conditionRecursiveSum(directory: Directory): Option[Int] = {
         if (condition(directory)) {
-          val size: Int = directory.size
-          directory.children
-            .flatMap(conditionRecursiveSum)
-            .minOption
-            .map(Math.min(_, size))
-            .orElse(Some(size))
+          Some(
+            directory.children
+              .flatMap(conditionRecursiveSum)
+              .minOption
+              .optCompare(directory.size)
+          )
         } else {
           None
         }
       }
 
       conditionRecursiveSum(fileSystem.root).get
+    }
+  }
+
+  implicit class OptionComparator(element: Option[Int]) {
+
+    def optCompare(otherSize: Int): Int = {
+      element match {
+        case Some(value) => Math.min(value, otherSize)
+        case None => otherSize
+      }
     }
   }
 }
