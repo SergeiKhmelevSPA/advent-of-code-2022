@@ -7,7 +7,7 @@ import scala.language.implicitConversions
 object Day2A {
 
   def main(): Int = {
-    ResourceLoader.reduceLineByLine { line =>
+    ResourceLoader.mapAndSum { line =>
       val items = line.split(' ')
       val opponentStrategy: Strategy = items(0)
       val yourStrategy: Strategy = items(1)

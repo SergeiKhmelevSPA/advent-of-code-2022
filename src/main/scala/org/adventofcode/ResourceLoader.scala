@@ -8,8 +8,8 @@ object ResourceLoader {
   def reduceLineByLine[R](f: String => R, op: (R, R) => R)(implicit fileName: String): R =
     processLines(_.map(f).reduce(op))
 
-  def reduceLineByLine(f: String => Int, op: (Int, Int) => Int = _ + _)(implicit fileName: String): Int =
-    processLines(_.map(f).reduce(op))
+  def mapAndSum(f: String => Int)(implicit fileName: String): Int =
+    processLines(_.map(f).sum)
 
   def processLines[R](f: Iterator[String] => R)(implicit fileName: String): R =
     using(Source.fromResource(fileName)) { source =>
