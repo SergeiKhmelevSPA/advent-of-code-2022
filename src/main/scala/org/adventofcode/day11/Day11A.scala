@@ -37,7 +37,7 @@ object Day11A {
                  id: Int,
                  startingItems: List[Item],
                  operation: Item => Item,
-                 divisibleBy: Int,
+                 divisibleBy: Long,
                  onTrue: Int,
                  onFalse: Int,
                ) extends Monkey(id, startingItems, operation, divisibleBy, onTrue, onFalse) {

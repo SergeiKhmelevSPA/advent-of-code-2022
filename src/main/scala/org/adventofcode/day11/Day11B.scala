@@ -18,19 +18,17 @@ object Day11B {
 
     val monkeys = monkeysBuilder.result()
 
-    1 to 20 foreach { _ =>
-      for ((i, monkey) <- monkeys) {
+    val lcmValue: Long = lcm(monkeys.values.map(_.divisibleBy))
+
+    monkeys.values.foreach(_.setLcm(lcmValue))
+
+    1 to 10_000 foreach { _ =>
+      for ((_, monkey) <- monkeys) {
         val actions = monkey.inspect()
         actions.foreach { action => monkeys(action.toMonkey).receiveAnItem(action.item) }
       }
     }
 
-    println(monkeys.values
-      .map(_.getInspectionsCount)
-      .toSeq
-      //      .sorted(Ordering[Int].reverse)
-      //      .take(2)
-    )
     monkeys.values
       .map(_.getInspectionsCount)
       .toSeq
@@ -44,13 +42,20 @@ object Day11B {
                  id: Int,
                  startingItems: List[Item],
                  operation: Item => Item,
-                 divisibleBy: Int,
+                 divisibleBy: Long,
                  onTrue: Int,
                  onFalse: Int,
                ) extends Monkey(id, startingItems, operation, divisibleBy, onTrue, onFalse) {
 
+    private var lcm: Long = 0
+
+    // TODO oh, come on
+    def setLcm(value: Long): Unit = {
+      lcm = value
+    }
+
     override protected def inspectItem(item: Item): ThrowAction = {
-      val newWorryLevel = inspectOperation(item)
+      val newWorryLevel = inspectOperation(item) % lcm
       val toMonkey = if (testWorryLevel(newWorryLevel)) throwToMonkeyXOnTrue else throwToMonkeyXOnFalse
 
       inspectionsCount += 1
@@ -58,5 +63,12 @@ object Day11B {
 
       ThrowAction(newWorryLevel, toMonkey)
     }
+  }
+
+  /** https://stackoverflow.com/questions/40875537/fp-lcm-in-scala-in-1-line */
+  def lcm(list: Iterable[Long]): Long = list.foldLeft(1: Long) {
+    (a, b) =>
+      b * a /
+        LazyList.iterate((a, b)) { case (x, y) => (y, x % y) }.dropWhile(_._2 != 0).head._1.abs
   }
 }

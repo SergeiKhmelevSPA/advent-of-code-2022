@@ -4,12 +4,12 @@ import scala.util.matching.Regex
 
 package object day11 extends HasFileName {
 
-  override val fileName: String = "test.txt"
+  override val fileName: String = "day11.txt"
 
 
   def parseMonkey[T <: Monkey](
                                 lines: Seq[String],
-                                constructor: (Int, List[Item], Item => Item, Item, Item, Item) => T
+                                constructor: (Int, List[Item], Item => Item, Item, Int, Int) => T
                               ): (Int, T) = {
     val idRegex: Regex = """^Monkey (\d+):$""".r
     val itemsRegex: Regex = """^\W+Starting items: ([, \d]+)$""".r
@@ -25,15 +25,15 @@ package object day11 extends HasFileName {
     var items: List[Item] = List.empty
     var operation: Item => Item = { it => it }
     var divisibleBy: Item = -1
-    var onTrue: Item = -1
-    var onFalse: Item = -1
+    var onTrue: Int = -1
+    var onFalse: Int = -1
 
     lines.foreach {
       case idRegex(idString) => id = idString.toInt
       case itemsRegex(itemsString) => {
         items = itemsString.split(",")
           .map(_.trim)
-          .map(_.toInt)
+          .map(_.toLong)
           .toList
       }
       case operationMultiRegex(value) => operation = _ * value.toInt
@@ -55,7 +55,7 @@ package object day11 extends HasFileName {
                          val id: Int,
                          startingItems: List[Item],
                          operation: Item => Item,
-                         divisibleBy: Int,
+                         val divisibleBy: Long,
                          onTrue: Int,
                          onFalse: Int,
                        ) {
@@ -85,5 +85,5 @@ package object day11 extends HasFileName {
 
   case class ThrowAction(item: Item, toMonkey: Int)
 
-  type Item = Int
+  type Item = Long
 }
