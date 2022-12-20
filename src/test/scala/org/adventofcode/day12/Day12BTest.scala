@@ -2,11 +2,11 @@ package org.adventofcode.day12
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class Day12ATest extends AnyFunSuite {
+class Day12BTest extends AnyFunSuite {
 
   test("testMain") {
-    assertResult(534) {
-      Day12A.main()
+    assertResult(525) {
+      Day12B.main()
     }
   }
 }
