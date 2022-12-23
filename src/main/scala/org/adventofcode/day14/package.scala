@@ -66,7 +66,7 @@ package object day14 extends HasFileName {
 
     private var counter: Int = 0
 
-    printCave()
+    // printCave()
 
     def simulate(condition: Coords => Boolean): Int = {
 
@@ -74,7 +74,7 @@ package object day14 extends HasFileName {
         val newCoords = sandFall(sandCoords)
 
         if (condition(newCoords)) {
-          printCave()
+          //printCave()
           println("End:" + newCoords)
           return counter
         }
